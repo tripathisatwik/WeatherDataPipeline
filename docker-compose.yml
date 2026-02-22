@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: de_postgres
+    environment:
+      POSTGRES_USER: de_user
+      POSTGRES_PASSWORD: de_pass
+      POSTGRES_DB: de_warehouse
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  airflow:
+    image: apache/airflow:2.9.3
+    container_name: de_airflow
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=sqlite:////opt/airflow/airflow.db
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./ingestion:/opt/airflow/ingestion
+      - ./data_lake:/opt/airflow/data_lake
+    ports:
+      - "8080:8080"
+    command: >
+      bash -c "airflow db init &&
+               airflow users create --username admin --password admin --firstname admin --lastname user --role Admin --email admin@example.com &&
+               airflow webserver & airflow scheduler"
+
+volumes:
+  pg_data:

@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+.env/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Data
+data_lake/
+*.json
+
+# IDE
+.vscode/
+
+# Logs
+*.log
