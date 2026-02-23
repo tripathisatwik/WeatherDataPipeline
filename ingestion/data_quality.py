@@ -1,7 +1,7 @@
 import psycopg2
 
 DB_CONFIG = {
-    "host" : "localhost",
+    "host" : "postgres",
     "port" : 5432,
     "database" : "de_warehouse",
     "user" : "de_user",

@@ -1,7 +1,7 @@
 import psycopg2
 
 DB_CONFIG = {
-    "host" : "localhost",
+    "host" : "postgres",
     "port" : 5432,
     "database" : "de_warehouse",
     "user" : "de_user",
@@ -12,7 +12,7 @@ def transform():
     conn = psycopg2.connect(**DB_CONFIG)
     cur = conn.cursor()
 
-    with open("ingestion/transform_raw_to_clean.sql","r") as f:
+    with open("/opt/airflow/ingestion/transform_raw_to_clean.sql","r") as f:
         cur.execute(f.read())
         conn.commit()
 

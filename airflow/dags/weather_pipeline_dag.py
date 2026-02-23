@@ -12,7 +12,7 @@ with DAG(
     dag_id="weather_event_pipeline",
     default_args=default_args,
     start_date=datetime(2026, 2, 22),  # date when DAG triggers
-    schedule_interval="*/10 * * * *",  # triggers every 10 minutes
+    schedule_interval="* * * * *",  # triggers every 10 minutes
     catchup=False,
 ) as dag:
 
