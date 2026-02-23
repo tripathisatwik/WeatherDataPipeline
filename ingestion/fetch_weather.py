@@ -1,7 +1,7 @@
 import requests
 import json
-from datetime import datetime
 from pathlib import Path
+from datetime import datetime, timezone
 
 URL = "https://api.open-meteo.com/v1/forecast?latitude=27.7172&longitude=85.3240&current_weather=true"
 
@@ -11,12 +11,12 @@ def fetch_weather_data():
         data = response.json()
 
         event = {
-            "timestamp" : datetime.utcnow().isoformat(),
+            "timestamp" : datetime.now(timezone.utc).isoformat(),
             "data" : data  
         }
 
         Path("data_lake").mkdir(exist_ok=True)
-        filename = f"data_lake/wather_{datetime.utcnow().strftime('%Y%m%d%H%M%S')}.json"
+        filename = f"/opt/airflow/data_lake/weather_{datetime.utcnow().strftime('%Y%m%d%H%M%S')}.json"
 
         with open(filename,"w") as f:
             json.dump(event, f)
