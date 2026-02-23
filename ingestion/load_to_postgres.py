@@ -4,7 +4,7 @@ import psycopg2
 from datetime import datetime
 
 DB_CONFIG = {
-    "host" : "localhost",
+    "host" : "postgres",
     "port" : 5432,
     "database" : "de_warehouse",
     "user" : "de_user",
@@ -15,11 +15,11 @@ def load_files():
     conn = psycopg2.connect(**DB_CONFIG)
     cur = conn.cursor()
 
-    with open("ingestion/create_table.sql","r") as f:
+    with open("/opt/airflow/ingestion/create_table.sql","r") as f:
         cur.execute(f.read())
         conn.commit()
 
-    files = glob.glob("data_lake/*.json")
+    files = glob.glob("/opt/airflow/data_lake/*.json")
     print(f"Found {len(files)} files")
 
     for file in files:
