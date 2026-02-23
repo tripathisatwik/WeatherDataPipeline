@@ -23,3 +23,6 @@ data_lake/
 
 # Logs
 *.log
+
+#metabase data store 
+metabase_data/
