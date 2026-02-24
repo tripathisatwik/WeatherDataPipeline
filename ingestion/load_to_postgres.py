@@ -30,7 +30,6 @@ def load_files():
         lat = payload["data"]["latitude"]
         lon = payload["data"]["longitude"]
 
-        # Check if timestamp exists before insert to avoid unnecessary calls to api
         cur.execute(
             """
             INSERT INTO weather_events_raw (event_time, latitude, longitude, raw_json)

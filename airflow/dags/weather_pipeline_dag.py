@@ -1,10 +1,10 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
-from datetime import datetime, timedelta  # fixed typo: datatime → datetime
+from datetime import datetime, timedelta  
 
 default_args = {
     "owner": "satwik",
-    "retries": 2,                    # fixed typo: retires → retries
+    "retries": 2,                    
     "retry_delay": timedelta(minutes=2)
 }
 
@@ -12,7 +12,7 @@ with DAG(
     dag_id="weather_event_pipeline",
     default_args=default_args,
     start_date=datetime(2026, 2, 22),  # date when DAG triggers
-    schedule_interval="* * * * *",  # triggers every 10 minutes
+    schedule_interval="*/10 * * * *",  # triggers every 10 minutes
     catchup=False,
 ) as dag:
 
