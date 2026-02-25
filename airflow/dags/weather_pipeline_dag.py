@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from datetime import datetime, timedelta  
+from airflow.utils.failure_logs import log_failure
 
 default_args = {
     "owner": "satwik",
@@ -11,9 +12,10 @@ default_args = {
 with DAG(
     dag_id="weather_event_pipeline",
     default_args=default_args,
-    start_date=datetime(2026, 2, 22),  # date when DAG triggers
+    start_date=datetime(2026, 2, 22),  # date when DAG starts to triggers
     schedule_interval="*/10 * * * *",  # triggers every 10 minutes
     catchup=False,
+    on_failure_callback=log_failure,
 ) as dag:
 
     ingest = BashOperator(
