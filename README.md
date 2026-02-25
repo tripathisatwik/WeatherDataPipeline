@@ -21,9 +21,9 @@ Public API (Open-Meteo)
 
 ```text
 de-event-pipeline/
-├── ingestion/      # API ingestion scripts
-├── airflow/        # DAGs for orchestration
-├── data_lake/      # Raw JSON landing zone (gitignored)
+├── ingestion/      
+├── airflow/        
+├── data_lake/      
 ├── requirements.txt
 ├── .gitignore
 └── README.md
