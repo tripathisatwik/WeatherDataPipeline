@@ -27,6 +27,7 @@ de-event-pipeline/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+```
 
 ## Setup
 ```bash
@@ -34,3 +35,7 @@ python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 python ingestion/fetch_weather.py
+```
+## Analytics Screenshots
+![App Screenshot](./analyitics_image/Image1.png)
+![App Screenshot](./analyitics_image/Image2.png)
